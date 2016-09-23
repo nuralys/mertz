@@ -4,24 +4,11 @@
     <span>Каталог наших товаров</span>
   </div>
   <ul class="product-menu">
+  <?php foreach($parent_cats as $item): ?>
     <li class="product-menu_item active">
-      <span class="product-menu_item__link">НОЖНИЦЫ</span>
+      <span class="product-menu_item__link"><?=$item['Category']['title'] ?></span>
     </li>
-    <li class="product-menu_item">
-      <span class="product-menu_item__link">ПЕДИКЮРНЫЕ ИНСТРУМЕНТЫ</span>
-    </li>
-    <li class="product-menu_item">
-      <span class="product-menu_item__link">КОСМЕТОЛОГИЧЕСКИЕ ИНСТРУМЕНТЫ</span>
-    </li>
-    <li class="product-menu_item">
-      <span class="product-menu_item__link">ПАРИКМАХЕРСКИЕ НОЖНИЦЫ</span>
-    </li>
-    <li class="product-menu_item">
-      <span class="product-menu_item__link">МАНИКЮРНЫЕ НАБОРЫ</span>
-    </li>
-    <li class="product-menu_item">
-      <span class="product-menu_item__link">ЛИНИЯ MRZ</span>
-    </li>
+    <?php endforeach ?>
   </ul>
   <div class="product-content">
   <?php //debug($products) ?>
@@ -32,22 +19,14 @@
       <ul class="product-list">
         <div class="product-list-side-bar product-list__item">
           <div class="product-item">
-            <a href="" class="product-list-side-bar_link active">Ножницы</a>
-            <a href="" class="product-list-side-bar_link">Ножницы с ручной заточкой</a>
-            <a href="" class="product-list-side-bar_link">Кусачки для кожи</a>
-            <a href="" class="product-list-side-bar_link">Кусачки для ногтей</a>
-            <a href="" class="product-list-side-bar_link">Кусачки с ручной заточкой</a>
-            <a href="" class="product-list-side-bar_link">Профессиональные инструменты</a>
-            <a href="" class="product-list-side-bar_link">Отдельные инструменты</a>
-            <a href="" class="product-list-side-bar_link">Книпсеры</a>
-            <a href="" class="product-list-side-bar_link">Пилки полировочные</a>
-            <a href="" class="product-list-side-bar_link">Бруски полировочные</a>
-            <a href="" class="product-list-side-bar_link">Пилки металлические</a>
-            <a href="" class="product-list-side-bar_link">Пилки мет. с пластиковой ручкой</a>
-            <a href="" class="product-list-side-bar_link">Пилки лазерные</a>
-            <a href="" class="product-list-side-bar_link">Пилки керамические</a>
-            <a href="" class="product-list-side-bar_link">Пилки стеклянные</a>
-            <a href="" class="product-list-side-bar_link">Ножи для кутикулы</a>
+          <?php //debug($categories[1]) ?>
+          <?php for($n=1;$n<=6;$n++): ?>
+          <?php foreach($categories[$n] as $item): ?>
+            <a href="" class="product-list-side-bar_link active">
+              <?php echo $item['Category']['title'] ?>
+            </a>
+          <?php endforeach ?>
+          <?php endfor ?>
           </div>
         </div>
         <?php foreach($products[$i] as $item): ?>

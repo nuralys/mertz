@@ -10,6 +10,17 @@ class CategoriesController extends AppController{
 	}
 
 	public function index(){
+		$parent_cats = $this->Category->find('all', array('conditions'=>array('Category.parent_id'=>0),
+			'recursive' => -1));
+		//debug($parent_cats);
+		$categories = array();
+		for($i=1; $i<=6; $i++){
+			$categories[$i] = $this->Category->find('threaded', array(
+			'conditions' => array('Category.parent_id' => $i),
+			'recursive' => -1
+			));
+		}
+		//debug($categories);
 		$products = array();
 		for($i=1; $i<=6; $i++){
 			$products[$i] = $this->Category->find('threaded', array(
@@ -21,7 +32,7 @@ class CategoriesController extends AppController{
 		// $title_for_layout = $user['User']['meta_title'];
 		// $meta['keywords'] = $user['User']['keywords'];
 		// $meta['description'] = $user['User']['description'];
-		return $this->set(compact('products', 'meta'));
+		return $this->set(compact('products', 'meta', 'categories', 'parent_cats'));
 		
 	}
 
