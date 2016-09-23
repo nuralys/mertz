@@ -1,0 +1,54 @@
+<?php
+
+
+App::uses('Controller', 'Controller');
+
+
+class AppController extends Controller {
+
+	public $uses = array('App');
+
+	public $components = array('DebugKit.Toolbar', 'Session', 'Auth' => array(
+            'loginRedirect' => '/users/cabinet',
+            'logoutRedirect' => '/',
+            'authenticate' => array(
+                'Form' => array(
+                    'passwordHasher' => 'Blowfish'
+                )
+            ),
+            'authorize' => array('Controller'),
+            'authError' => 'Вы не имеете прав доступа к данной странице'
+        ));
+
+	public $helpers = array('Html', 'Form', 'Session');
+
+	public function isAuthorized($user) {
+	    // Admin can access every action
+	    if (isset($user['role']) && $user['role'] === 'admin') {
+	        return true;
+	    }
+
+	    // Default deny
+	    return false;
+	}
+
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('index', 'view');
+		$admin = (isset($this->request->params['prefix']) && $this->request->params['prefix'] == 'admin') ? 'admin/' : false;
+		if(!$admin) $this->Auth->allow();
+
+		// $cabinet = (isset($this->request->params['prefix']) && $this->request->params['prefix'] == 'cabinet') ? 'cabinet/' : false;
+		// if(!$cabinet) $this->Auth->allow();
+		// debug($admin);
+		if($admin){
+			$this->layout = 'default';
+		}else{
+			$this->layout = 'index';
+		}
+
+
+		$this->set(compact('admin'));
+
+	}
+}
