@@ -59,26 +59,72 @@
     <?php for($i=1;$i<=6;$i++): ?>
         <div class="product-content_item <?php if($i==1) echo 'active'; ?>">
             <ul class="product-list">
+            <?php //debug(1) ?>
             <?php foreach($products[$i] as $item): ?>
                 <?php if($item['Product']): ?>
                     <?php foreach($item['Product'] as $k): ?>
-                        <li class="product-list__item" id="product-list__item">
-                            <div class="product-item">
-                                <a href="# 222"  class="product-item_img">
-                                    <img src="img/product.png" alt=""/>
-                                    <div class="product-hover--effect">
-                                        <div class="product-hover--effect_name">
-                                            <?=$k['title']?>
-                                        </div>
-                                        <p>УЗНАТЬ ПОДРОБНЕЕ</p>  
-                                    </div>
-                                </a>
-                                <div class="product-item_name"><?=$k['title']?></div>
-                                <p><span>Размер:</span> длина 9 см</p>
-                                <p><span>Лезвие:</span> выгнутые</p>
-                                <p><span>Покрытие:</span> темный никель лезвия и ручки</p>  
-                            </div>  
-                        </li>
+                        <?php if($k['parent_id']==0): ?>
+                        <li class="product-list__item" id="prod_<?=$k['id']?>">
+          <div class="product-item-navs">
+          <?php foreach($item['Product'] as $j): ?>
+            <?php if($k['id'] == $j['parent_id']): ?>
+            <div class="product-item-nav active">
+              <img src="/img/product/thumbs/<?=$k['img']?>" alt="">
+            </div>
+            <?php break; ?>
+                <?php endif ?>
+           <?php endforeach ?>
+
+          <?php foreach($item['Product'] as $j): ?>
+            <?php if($k['id'] == $j['parent_id']): ?>
+            <div class="product-item-nav">
+              <img src="/img/product.png" alt="">
+            </div>
+                <?php endif ?>
+           <?php endforeach ?>
+          </div>
+          
+          <div class="product-item active">
+            <a href="#modal1"  class="open_modal product-item_img">
+              <img src="img/product.png" alt=""/>
+              <div class="product-hover--effect">
+                
+                <p>УЗНАТЬ ПОДРОБНЕЕ</p>
+                
+              </div>
+            </a>
+            
+            <div class="product-item_name">
+              <?=$k['title']?>
+            </div>
+            <p><span>Размер:</span> <?=$k['size']?></p>
+            <p><span>Лезвие:</span> <?=$k['blade']?></p>
+            <p><span>Покрытие:</span> <?=$k['coating']?></p>  
+          </div>
+          <?php foreach($item['Product'] as $j): ?>
+            <?php if($k['id'] == $j['parent_id']): ?>
+           <div class="product-item">
+            <a href="#modal1"  class="open_modal product-item_img">
+              <img src="img/product.png" alt=""/>
+              <div class="product-hover--effect">
+                
+                <p>УЗНАТЬ ПОДРОБНЕЕ</p>
+                
+              </div>
+            </a>
+            
+            <div class="product-item_name">
+              <?=$j['title']?>
+            </div>
+            <p><span>Размер:</span> <?=$j['size']?></p>
+            <p><span>Лезвие:</span> выгнутые</p>
+            <p><span>Покрытие:</span> темный никель лезвия и ручки</p>  
+          </div> 
+          <?php endif ?> 
+          <?php endforeach ?>
+            
+        </li>
+        <?php endif ?>
                     <?php endforeach ?>
                 <?php endif ?>
             <?php endforeach ?>

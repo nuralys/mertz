@@ -1,3 +1,4 @@
+<?php //debug($categories[2]) ?>
 <div class="product-index">
   <div class="product-index__title">
     НАША ПРОДУКЦИЯ
@@ -20,19 +21,21 @@
         <div class="product-list-side-bar product-list__item">
           <div class="product-item">
           <?php //debug($categories[1]) ?>
-          <?php for($n=1;$n<=6;$n++): ?>
-          <?php foreach($categories[$n] as $item): ?>
-            <a href="" class="product-list-side-bar_link active">
-              <?php echo $item['Category']['title'] ?>
+          <?php //for($n=1;$n<=6;$n++): ?>
+          <?php foreach($categories[$i] as $item): ?>
+            <?php //debug($item);die; ?>
+            <a href="" id="link_<?=$item['Category']['id'] ?>" class="product-list-side-bar_link active">
+              <?=$item['Category']['title'] ?>
             </a>
           <?php endforeach ?>
-          <?php endfor ?>
+          <?php //endfor ?>
           </div>
         </div>
         <?php foreach($products[$i] as $item): ?>
                 <?php if($item['Product']): ?>
                     <?php foreach($item['Product'] as $k): ?>
-        <li class="product-list__item" >
+                      <?php if($k['parent_id']==0): ?>
+        <li class="product-list__item" id="prod_<?=$k['id']?>">
           <div class="product-item-navs">
           <?php foreach($item['Product'] as $j): ?>
             <?php if($k['id'] == $j['parent_id']): ?>
@@ -66,8 +69,8 @@
               <?=$k['title']?>
             </div>
             <p><span>Размер:</span> <?=$k['size']?></p>
-            <p><span>Лезвие:</span> выгнутые</p>
-            <p><span>Покрытие:</span> темный никель лезвия и ручки</p>  
+            <p><span>Лезвие:</span> <?=$k['blade']?></p>
+            <p><span>Покрытие:</span> <?=$k['coating']?></p>  
           </div>
           <?php foreach($item['Product'] as $j): ?>
             <?php if($k['id'] == $j['parent_id']): ?>
@@ -92,7 +95,7 @@
           <?php endforeach ?>
             
         </li>
-        
+        <?php endif ?>
         
         <?php endforeach ?>
                 <?php endif ?>
