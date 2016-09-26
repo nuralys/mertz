@@ -32,10 +32,11 @@
           </div>
         </div>
         <?php foreach($products[$i] as $item): ?>
+          
                 <?php if($item['Product']): ?>
                     <?php foreach($item['Product'] as $k): ?>
                       <?php if($k['parent_id']==0): ?>
-        <li class="product-list__item" id="prod_<?=$k['id']?>">
+        <li class="product-list__item" id="prod_<?=$item['Category']['id']?>">
           <div class="product-item-navs">
           <?php foreach($item['Product'] as $j): ?>
             <?php if($k['id'] == $j['parent_id']): ?>
