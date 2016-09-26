@@ -40,7 +40,7 @@
           <?php foreach($item['Product'] as $j): ?>
             <?php if($k['id'] == $j['parent_id']): ?>
             <div class="product-item-nav active">
-              <img src="/img/product/thumbs/<?=$k['img']?>" alt="">
+              <img src="/img/product/thumbs/<?=$k['mini_img']?>" alt="">
             </div>
             <?php break; ?>
                 <?php endif ?>
@@ -49,7 +49,7 @@
           <?php foreach($item['Product'] as $j): ?>
             <?php if($k['id'] == $j['parent_id']): ?>
             <div class="product-item-nav">
-              <img src="/img/product.png" alt="">
+              <img src="/img/product/thumbs/<?=$j['mini_img']?>" alt="">
             </div>
                 <?php endif ?>
            <?php endforeach ?>
@@ -57,7 +57,7 @@
           
           <div class="product-item active">
             <a href="#modal1"  class="open_modal product-item_img">
-              <img src="img/product.png" alt=""/>
+              <img src="/img/product/thumbs/<?=$k['img']?>" alt=""/>
               <div class="product-hover--effect">
                 
                 <p>УЗНАТЬ ПОДРОБНЕЕ</p>
@@ -76,7 +76,7 @@
             <?php if($k['id'] == $j['parent_id']): ?>
            <div class="product-item">
             <a href="#modal1"  class="open_modal product-item_img">
-              <img src="img/product.png" alt=""/>
+              <img src="/img/product/thumbs/<?=$j['img']?>" alt=""/>
               <div class="product-hover--effect">
                 
                 <p>УЗНАТЬ ПОДРОБНЕЕ</p>

@@ -20,7 +20,7 @@ $angle = $_POST['rotation'];
 
 $jpeg_quality = 100;
 
-$out_file = "/img/slider_crop/thumbs/croppedImg_".rand();
+$out_file = "/img/product_crop/thumbs/croppedImg_".rand();
 $output_filename = $_SERVER['DOCUMENT_ROOT']."/app/webroot".$out_file;
 
 // uncomment line below to save the cropped image in the same location as the original image.

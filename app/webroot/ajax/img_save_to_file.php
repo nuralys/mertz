@@ -2,7 +2,7 @@
 /*
 *	!!! THIS IS JUST AN EXAMPLE !!!, PLEASE USE ImageMagick or some other quality image processing libraries
 */
-    $imagePath = $_SERVER['DOCUMENT_ROOT']."/app/webroot/img/slider_crop/";
+    $imagePath = $_SERVER['DOCUMENT_ROOT']."/app/webroot/img/product_crop/";
 
 	$allowedExts = array("gif", "jpeg", "jpg", "png", "GIF", "JPEG", "JPG", "PNG");
 	$temp = explode(".", $_FILES["img"]["name"]);
@@ -38,7 +38,7 @@
 
 		  $response = array(
 			"status" => 'success',
-			"url" => '/img/slider_crop/'.$_FILES["img"]["name"],
+			"url" => '/img/product_crop/'.$_FILES["img"]["name"],
 			"width" => $width,
 			"height" => $height
 		  );

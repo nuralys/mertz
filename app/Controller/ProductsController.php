@@ -40,9 +40,28 @@ class ProductsController extends AppController{
 		if($this->request->is(array('post', 'put'))){
 			$this->Product->id = $id;
 			$data1 = $this->request->data['Product'];
+			/*ws begin*/
+			if(isset($data1['imgsource']) && !empty($data1['imgsource'])){
+				$getmime = getimagesize(WWW_ROOT . trim($data1["imgsource"], '/'));
+				// $file= end(explode("/",  $data1["imgsource"]));
+				$r = explode("/",  $data1["imgsource"]);
+				$file= end($r);
+				$data1["img"]= array(
+					"name"=> $file,
+					"tmp_name" => WWW_ROOT . trim($data1["imgsource"], '/'),
+					"error"=> 0,
+					"mime"=>$getmime['mime'],
+					"size"=>filesize (WWW_ROOT . trim($data1["imgsource"], '/'))
+				);
+			}
+			/*ws end*/
 			if(empty($data1['img']['name']) || !$data1['img']['name']){
 				unset($data1['img']);
 			}
+			if(empty($data1['mini_img']['name']) || !$data1['mini_img']['name']){
+				unset($data1['mini_img']);
+			}
+			// debug($data1);
 			if($this->Product->save($data1)){
 				$this->Session->setFlash('Сохранено', 'default', array(), 'good');
 				return $this->redirect($this->referer());

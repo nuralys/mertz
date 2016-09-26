@@ -1,6 +1,6 @@
 #cropContainerEyecandy {
-	width: 461px;
-	height: 183px;
+	width: 275px;
+	height: 342px;
 	position:relative; /* or fixed or absolute */
 	outline: 1px solid #a7a7a7;
 	background-image: url('../img/default.jpg');
