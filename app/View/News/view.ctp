@@ -1,11 +1,12 @@
 <div class="content">
     <div class="news">
+    <div class="news-title_big">
+            <?php echo $data['News']['title']; ?>
+        </div>
         <div class="news-second__img">
             <img src="/img/news/<?php echo $data['News']['img']; ?>" alt="">
         </div>
-        <div class="news-title">
-            <?php echo $data['News']['title']; ?>
-        </div> 
+         
         <div class="news-date">
             Дата публикации: <?php echo $this->Time->format($data['News']['date'], '%d.%m.%Y', 'invalid'); ?>
         </div>

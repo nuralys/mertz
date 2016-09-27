@@ -6,7 +6,7 @@
   </div>
   <ul class="product-menu">
   <?php foreach($parent_cats as $item): ?>
-    <li class="product-menu_item active">
+    <li class="product-menu_item ">
       <span class="product-menu_item__link"><?=$item['Category']['title'] ?></span>
     </li>
     <?php endforeach ?>
