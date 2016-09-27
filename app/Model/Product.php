@@ -113,9 +113,9 @@ class Product extends AppModel{
 		$ratio = $w_orig / $h_orig; // =1 - квадрат, <1 - альбомная, >1 - книжная
 
 		if(($wmax / $hmax) > $ratio){
-			$wmax = 275;
+			$wmax = 52;
 		}else{
-			$hmax = 342;
+			$hmax = 52;
 		}
 		
 		$img = "";

@@ -15,6 +15,15 @@ echo $this->Form->input('title', array('label' => 'Название'));
 		<?php endforeach ?>
 	</select>
 </div>
+<div class="input select">
+<label for="ProductParentId">Родительский продукт:</label>
+	<select name="data[Product][parent_id]" id="ProductParentId">
+		<option value="">Выберите продукт</option>
+		<?php foreach($products as $key => $value): ?>
+			<option value="<?=$key?>"><?=$value?></option>
+		<?php endforeach ?>
+	</select>
+</div>
 <div id="cropContainerEyecandy"></div>
 
     <link href="/css/main.css" rel="stylesheet">

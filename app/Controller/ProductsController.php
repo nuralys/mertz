@@ -13,20 +13,41 @@ class ProductsController extends AppController{
 		if($this->request->is('post')){
 			$this->Product->create();
 			$data = $this->request->data['Product'];
-			// debug($data);
-			 if(!$data['img']['name']){
-			 	unset($data['img']);
-			}
-			if($this->Product->save($data)){
-				$this->Session->setFlash('Сохранено', 'default', array(), 'good');
-				// debug($data);
-				return $this->redirect($this->referer());
-			}else{
-				$this->Session->setFlash('Ошибка', 'default', array(), 'bad');
-			}
+			/*ws begin*/
+			if($data["imgsource"]){
+				$getmime = getimagesize(WWW_ROOT . trim($data["imgsource"], '/'));
+				$r = explode("/",  $data["imgsource"]);
+				$file= end($r);
+
+				$data["img"]= array(
+					"name"=> $file,
+					"tmp_name" => WWW_ROOT . trim($data["imgsource"], '/'),
+					"error"=> 0,
+					"mime"=>$getmime['mime'],
+					"size"=>filesize (WWW_ROOT . trim($data["imgsource"], '/'))
+				);
+				if(empty($data['img']['name']) || !$data['img']['name']){
+					unset($data['img']);
+				}
+				if(empty($data['mini_img']['name']) || !$data['mini_img']['name']){
+					unset($data['mini_img']);
+				}
+
+				if($this->Slide->save($data)){
+					$this->Session->setFlash('Сохранено', 'default', array(), 'good');
+					// debug($data);
+					return $this->redirect($this->referer());
+				}else{
+					$this->Session->setFlash('Ошибка', 'default', array(), 'bad');
+				}
+				}else{
+					$this->Session->setFlash('Ошибка! Выберите файл и обрежте его (зеленая кнопка)', 'default', array(), 'bad');
+				}
+				/*ws end*/
 		}
+		$products = $this->Product->find('list');
 		$categories = $this->Product->Category->find('list');
-		$this->set(compact('categories'));
+		$this->set(compact('categories', 'products'));
 	}
 
 	public function admin_edit($id){
@@ -68,12 +89,16 @@ class ProductsController extends AppController{
 			}else{
 				$this->Session->setFlash('Ошибка', 'default', array(), 'bad');
 			}
+			
+			
 		}
 		//Заполняем данные в форме
 		if(!$this->request->data){
 			$this->request->data = $data;
 			$title_for_layout = 'Редактирование';
-			$this->set(compact('id', 'data', 'title_for_layout'));
+			$categories = $this->Product->Category->find('list');
+			$products = $this->Product->find('list');
+			$this->set(compact('id', 'data', 'title_for_layout', 'categories', 'products'));
 		}
 	}
 

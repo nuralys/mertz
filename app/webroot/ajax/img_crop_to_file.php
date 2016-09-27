@@ -72,11 +72,11 @@ if(!is_writable(dirname($output_filename))){
     $dy = $rotated_height - $imgH;
     // crop rotated image to fit into original rezized rectangle
 	$cropped_rotated_image = imagecreatetruecolor($imgW, $imgH);
-	imagecolortransparent($cropped_rotated_image, imagecolorallocate($cropped_rotated_image, 0, 0, 0));
+	imagecolortransparent($cropped_rotated_image, imagecolorallocate($cropped_rotated_image, 255, 0, 0));
 	imagecopyresampled($cropped_rotated_image, $rotated_image, 0, 0, $dx / 2, $dy / 2, $imgW, $imgH, $imgW, $imgH);
 	// crop image into selected area
 	$final_image = imagecreatetruecolor($cropW, $cropH);
-	imagecolortransparent($final_image, imagecolorallocate($final_image, 0, 0, 0));
+	imagecolortransparent($final_image, imagecolorallocate($final_image, 255, 0, 0));
 	imagecopyresampled($final_image, $cropped_rotated_image, 0, 0, $imgX1, $imgY1, $cropW, $cropH, $cropW, $cropH);
 	// finally output png image
 	//imagepng($final_image, $output_filename.$type, $png_quality);

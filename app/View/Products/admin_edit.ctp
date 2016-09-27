@@ -35,6 +35,25 @@ echo $this->Form->input('title', array('label' => 'Название:'));?>
 <input type="text" name="data[Product][imgsource]" class="imgsource" value="" />
 <input type="text" name="data[Product][imgcrop]" class="imgcrop" value="" />
 </div>
+<div class="input select">
+<label for="ProductCategoryId">Категории:</label>
+	<select required name="data[Product][category_id]" id="ProductCategoryId">
+		<option value="">Выберите категорию</option>
+		<?php foreach($categories as $key => $value): ?>
+			<option value="<?=$key?>" <?= ($data['Product']['category_id'] == $key)? 'selected' : '' ?>><?=$value?></option>
+		<?php endforeach ?>
+	</select>
+</div>
+<div class="input select">
+<label for="ProductParentId">Родительский продукт:</label>
+	<select name="data[Product][parent_id]" id="ProductParentId">
+		<option value="">Выберите продукт</option>
+		<option value="0">----</option>
+		<?php foreach($products as $key => $value): ?>
+			<option value="<?=$key?>" <?= ($data['Product']['parent_id'] == $key)? 'selected' : '' ?>><?=$value?></option>
+		<?php endforeach ?>
+	</select>
+</div>
 <?php
 echo $this->Form->input('mini_img', array('label' => 'мини изображение:', 'type' => 'file'));
 echo $this->Form->input('size', array('label' => 'Размеры:'));
