@@ -19,6 +19,7 @@
                 <li class="menu-item"><a href="/category" class="menu-item__link">КАТАЛОГ</a></li>
                 <li class="menu-item"><a href="/page/contacts" class="menu-item__link"> КОНТАКТЫ</a></li>
             </ul>
+            <div class="mob_start"></div>
         </div>
     </nav>
     <div class="banner">

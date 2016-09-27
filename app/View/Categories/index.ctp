@@ -24,7 +24,7 @@
           <?php //for($n=1;$n<=6;$n++): ?>
           <?php foreach($categories[$i] as $item): ?>
             <?php //debug($item);die; ?>
-            <a href="" id="link_<?=$item['Category']['id'] ?>" class="product-list-side-bar_link active">
+            <a data-id="prod_<?=$item['Category']['id'] ?>" class="product-list-side-bar_link ">
               <?=$item['Category']['title'] ?>
             </a>
           <?php endforeach ?>
@@ -36,7 +36,7 @@
                 <?php if($item['Product']): ?>
                     <?php foreach($item['Product'] as $k): ?>
                       <?php if($k['parent_id']==0): ?>
-        <li class="product-list__item" id="prod_<?=$item['Category']['id']?>">
+        <li class="product-list__item prod_<?=$item['Category']['id'] ?> " data-id="" >
           <div class="product-item-navs">
           <?php foreach($item['Product'] as $j): ?>
             <?php if($k['id'] == $j['parent_id']): ?>

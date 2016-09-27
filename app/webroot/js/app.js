@@ -9,6 +9,27 @@ $('.product-item-nav').click(function () {
        
     });
 
+
+
+$('.product-list-side-bar_link').click(function () {
+        var data_id_product = $(this).data('id');
+        if($(this).hasClass('active')){
+        	$(this).siblings().removeClass('active');
+        }
+        else{
+        	$(this).siblings().removeClass('active');
+			$(this).addClass('active');
+        }
+        $('.product-list__item').css('display','none');
+        $('.product-list-side-bar').css('display','block');
+    	if($('.product-list__item').hasClass(data_id_product)) {;
+    		$('.product-list__item.' + data_id_product + '').css('display','block');
+		}
+    });
+
+
+
+
 	$(".product-item_img").click(function(){
 		var product=$(this).parent().parent().html();
 	$(".modal-product").html(product);
